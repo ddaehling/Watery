@@ -11,6 +11,7 @@
 		65C0E93C255F2CD3009283B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C0E93B255F2CD3009283B3 /* ContentView.swift */; };
 		65C0E93E255F2CD5009283B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C0E93D255F2CD5009283B3 /* Assets.xcassets */; };
 		65C0E941255F2CD5009283B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C0E940255F2CD5009283B3 /* Preview Assets.xcassets */; };
+		65C0E94A255F2CF8009283B3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C0E949255F2CF8009283B3 /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		65C0E93D255F2CD5009283B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C0E940255F2CD5009283B3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		65C0E942255F2CD5009283B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65C0E949255F2CF8009283B3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				65C0E939255F2CD3009283B3 /* WateryApp.swift */,
 				65C0E93B255F2CD3009283B3 /* ContentView.swift */,
+				65C0E949255F2CF8009283B3 /* AppState.swift */,
 				65C0E93D255F2CD5009283B3 /* Assets.xcassets */,
 				65C0E942255F2CD5009283B3 /* Info.plist */,
 				65C0E93F255F2CD5009283B3 /* Preview Content */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C0E94A255F2CF8009283B3 /* AppState.swift in Sources */,
 				65C0E93C255F2CD3009283B3 /* ContentView.swift in Sources */,
 				65C0E93A255F2CD3009283B3 /* WateryApp.swift in Sources */,
 			);
