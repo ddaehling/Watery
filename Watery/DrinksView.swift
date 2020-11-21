@@ -10,28 +10,41 @@ import ComposableArchitecture
 
 struct DrinksState: Equatable {
     var drinks: [Drink]
-    var drinksForSelectedWeek: [Drink] {
-        drinks.filter { $0.date == nil }
+}
+
+struct Drink: Equatable, Identifiable {
+    let date: Date
+    let id: UUID
+    private let size: Double
+    
+    init(date: Date = Date(), size: Size, quality: Quality = .neutral) {
+        self.date = date
+        func calculateNetWorth(for size: Double, quality: Quality) -> Double {
+            switch quality {
+            case .neutral:
+                return size * 1
+            case .bad:
+                return size * 0.7
+            case .veryBad:
+                return size * 0.5
+            }
+        }
+        
+        switch size {
+        case .small:
+            self.size = calculateNetWorth(for: 0.3, quality: quality)
+        case .medium:
+            self.size = calculateNetWorth(for: 0.5, quality: quality)
+        case .large:
+            self.size = calculateNetWorth(for: 1, quality: quality)
+        case let .custom(size):
+            self.size = calculateNetWorth(for: size, quality: quality)
+        }
     }
 }
 
-struct Drink: Equatable {
-    let date: Date
-    private let size: Double
-    
-    init(date: Date = Date(), size: Size) {
-        self.date = date
-        switch size {
-        case .small:
-            self.size = 0.3
-        case .medium:
-            self.size = 0.5
-        case .large:
-            self.size = 1.0
-        case let .custom(size):
-            self.size = size
-        }
-    }
+enum Quality {
+    case neutral, bad, veryBad
 }
 
 enum Size: Equatable {
@@ -43,6 +56,8 @@ enum Size: Equatable {
 
 enum DrinksAction: Equatable {
     case drinkAdded(Drink)
+//    case drinksOverViewAction(OverviewAction)
+    case drinkDeleted(DrinksOverViewAction)
 }
 
 struct DrinksEnvironment {}
@@ -54,6 +69,8 @@ DrinksState, DrinksAction, DrinksEnvironment
     case let .drinkAdded(drink):
         drinksState.drinks.append(drink)
         //TODO: Include stable sort
+        return .none
+    case .drinkDeleted:
         return .none
     }
 }
