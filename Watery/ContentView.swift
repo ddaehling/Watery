@@ -20,7 +20,9 @@ enum AppAction: Equatable {
     case settingsAction(SettingsAction)
 }
 
-struct AppEnvironment {}
+struct AppEnvironment {
+    var uuid: () -> UUID
+}
 
 let appReducer = Reducer<
 AppState, AppAction, AppEnvironment
@@ -29,7 +31,7 @@ AppState, AppAction, AppEnvironment
         .pullback(
         state: \AppState.drinkState,
         action: /AppAction.drinksAction,
-        environment: { _ in .init() }),
+            environment: { environment in .init(uuid: environment.uuid()) }),
     parametersReducer
         .pullback(
         state: \AppState.parameterState,

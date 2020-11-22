@@ -17,8 +17,9 @@ struct Drink: Equatable, Identifiable {
     let id: UUID
     private let size: Double
     
-    init(date: Date = Date(), size: Size, quality: Quality = .neutral) {
+    init(date: Date = Date(), id: UUID, size: Size, quality: Quality = .neutral) {
         self.date = date
+        self.id = id
         func calculateNetWorth(for size: Double, quality: Quality) -> Double {
             switch quality {
             case .neutral:
@@ -56,24 +57,28 @@ enum Size: Equatable {
 
 enum DrinksAction: Equatable {
     case drinkAdded(Drink)
-//    case drinksOverViewAction(OverviewAction)
-    case drinkDeleted(DrinksOverViewAction)
+    case drinksOverViewAction(DrinksOverViewAction)
 }
 
-struct DrinksEnvironment {}
+struct DrinksEnvironment {
+    let uuid: UUID
+}
 
 let drinksReducer = Reducer<
-DrinksState, DrinksAction, DrinksEnvironment
-> { drinksState, drinksAction, drinksEnvironment in
-    switch drinksAction {
-    case let .drinkAdded(drink):
-        drinksState.drinks.append(drink)
-        //TODO: Include stable sort
-        return .none
-    case .drinkDeleted:
-        return .none
+    DrinksState, DrinksAction, DrinksEnvironment
+>.combine(
+    drinksOverViewReducer.pullback(state: \.self, action: /DrinksAction.drinksOverViewAction, environment: { $0 }),
+    Reducer { drinksState, drinksAction, drinksEnvironment in
+        switch drinksAction {
+        case let .drinkAdded(drink):
+            drinksState.drinks.append(drink)
+            //TODO: Include stable sort
+            return .none
+        case .drinksOverViewAction(_):
+            return .none
+        }
     }
-}
+)
 
 struct DrinksView: View {
     var body: some View {

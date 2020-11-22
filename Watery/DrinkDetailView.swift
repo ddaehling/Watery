@@ -6,20 +6,31 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+
+let drinksDetailReducer = Reducer<Drink, DrinksDetailAction, Void> { state, action, _ in
+    switch action {
+    case let .drinkModified(drink):
+        state = drink
+        return .none
+    }
+}
 
 enum DrinksDetailAction: Equatable {
-    case drinkDeleted(Drink)
     case drinkModified(Drink)
 }
 
 struct DrinkDetailView: View {
+    let store : Store<Drink, DrinksDetailAction>
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        EmptyView()
     }
 }
 
-struct DrinkDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DrinkDetailView()
-    }
-}
+//
+//struct DrinkDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DrinkDetailView()
+//    }
+//}
