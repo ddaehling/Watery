@@ -44,12 +44,13 @@ AppState, AppAction, AppEnvironment
         environment: { _ in .init() })
 )
 
+
 struct ContentView: View {
     var store : Store<AppState, AppAction>
     
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        RefuelView()
+        
     }
 }
 

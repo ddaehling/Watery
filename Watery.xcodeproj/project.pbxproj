@@ -19,6 +19,11 @@
 		65C0E93C255F2CD3009283B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C0E93B255F2CD3009283B3 /* ContentView.swift */; };
 		65C0E93E255F2CD5009283B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C0E93D255F2CD5009283B3 /* Assets.xcassets */; };
 		65C0E941255F2CD5009283B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C0E940255F2CD5009283B3 /* Preview Assets.xcassets */; };
+		72C50556256E98DB00B3E556 /* DrinkTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C50555256E98DB00B3E556 /* DrinkTypes.swift */; };
+		72C5055B256E9BA600B3E556 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C5055A256E9BA600B3E556 /* ColorManager.swift */; };
+		72C5055F256E9C8300B3E556 /* RefuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C5055E256E9C8300B3E556 /* RefuelView.swift */; };
+		72C50564256E9D5A00B3E556 /* CupSizeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C50563256E9D5A00B3E556 /* CupSizeButtonView.swift */; };
+		72C5056D256EA56C00B3E556 /* CupSizeGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C5056C256EA56C00B3E556 /* CupSizeGroupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +40,11 @@
 		65C0E93D255F2CD5009283B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C0E940255F2CD5009283B3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		65C0E942255F2CD5009283B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72C50555256E98DB00B3E556 /* DrinkTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTypes.swift; sourceTree = "<group>"; };
+		72C5055A256E9BA600B3E556 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		72C5055E256E9C8300B3E556 /* RefuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelView.swift; sourceTree = "<group>"; };
+		72C50563256E9D5A00B3E556 /* CupSizeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupSizeButtonView.swift; sourceTree = "<group>"; };
+		72C5056C256EA56C00B3E556 /* CupSizeGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupSizeGroupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +78,14 @@
 		65C0E938255F2CD3009283B3 /* Watery */ = {
 			isa = PBXGroup;
 			children = (
+				72C50561256E9C8E00B3E556 /* Views */,
+				72C50559256E9B9600B3E556 /* Managers */,
 				65C0E939255F2CD3009283B3 /* WateryApp.swift */,
 				65C0E93B255F2CD3009283B3 /* ContentView.swift */,
 				65BE9ED4255FDD5400E7E137 /* StatisticsView.swift */,
 				65BE9ED8255FDDB200E7E137 /* DrinksView.swift */,
 				65A73306256D63C6001A6677 /* Drink.swift */,
+				72C50555256E98DB00B3E556 /* DrinkTypes.swift */,
 				658CEF132569806900760050 /* DrinksOverView.swift */,
 				65A732FF2569ACDB001A6677 /* DrinkDetailView.swift */,
 				65BE9EDB255FE48900E7E137 /* ParametersView.swift */,
@@ -90,6 +103,32 @@
 				65C0E940255F2CD5009283B3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		72C50559256E9B9600B3E556 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				72C5055A256E9BA600B3E556 /* ColorManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		72C50561256E9C8E00B3E556 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72C50566256EA25900B3E556 /* Refuel */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		72C50566256EA25900B3E556 /* Refuel */ = {
+			isa = PBXGroup;
+			children = (
+				72C50563256E9D5A00B3E556 /* CupSizeButtonView.swift */,
+				72C5055E256E9C8300B3E556 /* RefuelView.swift */,
+				72C5056C256EA56C00B3E556 /* CupSizeGroupView.swift */,
+			);
+			path = Refuel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,10 +210,15 @@
 				65A73307256D63C6001A6677 /* Drink.swift in Sources */,
 				65BE9ED9255FDDB200E7E137 /* DrinksView.swift in Sources */,
 				65C0E93C255F2CD3009283B3 /* ContentView.swift in Sources */,
+				72C5056D256EA56C00B3E556 /* CupSizeGroupView.swift in Sources */,
+				72C5055B256E9BA600B3E556 /* ColorManager.swift in Sources */,
 				65BE9ED5255FDD5400E7E137 /* StatisticsView.swift in Sources */,
 				658CEF142569806900760050 /* DrinksOverView.swift in Sources */,
+				72C50556256E98DB00B3E556 /* DrinkTypes.swift in Sources */,
 				65BE9EDC255FE48900E7E137 /* ParametersView.swift in Sources */,
+				72C5055F256E9C8300B3E556 /* RefuelView.swift in Sources */,
 				65A733002569ACDB001A6677 /* DrinkDetailView.swift in Sources */,
+				72C50564256E9D5A00B3E556 /* CupSizeButtonView.swift in Sources */,
 				65C0E93A255F2CD3009283B3 /* WateryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
