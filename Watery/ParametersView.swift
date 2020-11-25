@@ -12,6 +12,11 @@ struct ParametersState: Equatable {
     var exertions: [Exertion]
     var personalData: PersonalData
     
+    init(exertions: [Exertion] = [], personalData : PersonalData = .standard) {
+        self.exertions = exertions
+        self.personalData = personalData
+    }
+    
     private var riskFactor: Double {
         // TODO: enter groundbreaking algorithm here (based on healthRisks)
         return 0
@@ -27,7 +32,36 @@ struct ParametersState: Equatable {
         var weight: Double
         var age: Double
         var healthRisks: [HealthRisk]
+        
+        static var standard : PersonalData = .init(height: 170, weight: 140, age: 40, healthRisks: [])
     }
+    
+    static var exampleParameterState : ParametersState = .init(
+        exertions: [Exertion(
+                        calories: 400,
+                        date: .init(timeIntervalSince1970: 1606238341)),
+                     Exertion(
+                         calories: 300,
+                         date: .init(timeIntervalSince1970: 1606151941)),
+                     Exertion(
+                         calories: 600,
+                         date: .init(timeIntervalSince1970: 1606065541))],
+        personalData: PersonalData(
+            height: 188,
+            weight: 204,
+            age: 53,
+            healthRisks: [
+                .heartCondition,
+                .obese
+            ]))
+    
+    static var initialParameterState : ParametersState = .init(
+        exertions: [],
+        personalData: PersonalData(
+            height: 180,
+            weight: 150,
+            age: 40,
+            healthRisks: []))
 }
 
 struct Exertion: Equatable {
@@ -65,6 +99,8 @@ ParametersState, ParametersAction, ParametersEnvironment
 }
 
 struct ParametersView: View {
+    let store : Store<ParametersState, ParametersAction>
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -72,6 +108,10 @@ struct ParametersView: View {
 
 struct ParametersView_Previews: PreviewProvider {
     static var previews: some View {
-        ParametersView()
+        ParametersView(
+            store: Store(
+                initialState: .exampleParameterState,
+                reducer: parametersReducer,
+                environment: ParametersEnvironment()))
     }
 }

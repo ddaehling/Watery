@@ -28,9 +28,13 @@ struct DrinkDetailView: View {
     }
 }
 
-//
-//struct DrinkDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DrinkDetailView()
-//    }
-//}
+
+struct DrinkDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        DrinkDetailView(
+            store: Store(
+                initialState: Drink.exampleDrink,
+                reducer: drinksDetailReducer,
+                environment: () ))
+    }
+}

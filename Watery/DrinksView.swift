@@ -9,50 +9,13 @@ import SwiftUI
 import ComposableArchitecture
 
 struct DrinksState: Equatable {
-    var drinks: [Drink]
-}
-
-struct Drink: Equatable, Identifiable {
-    let date: Date
-    let id: UUID
-    private let size: Double
+    var drinks: IdentifiedArrayOf<Drink>
     
-    init(date: Date = Date(), id: UUID, size: Size, quality: Quality = .neutral) {
-        self.date = date
-        self.id = id
-        func calculateNetWorth(for size: Double, quality: Quality) -> Double {
-            switch quality {
-            case .neutral:
-                return size * 1
-            case .bad:
-                return size * 0.7
-            case .veryBad:
-                return size * 0.5
-            }
-        }
-        
-        switch size {
-        case .small:
-            self.size = calculateNetWorth(for: 0.3, quality: quality)
-        case .medium:
-            self.size = calculateNetWorth(for: 0.5, quality: quality)
-        case .large:
-            self.size = calculateNetWorth(for: 1, quality: quality)
-        case let .custom(size):
-            self.size = calculateNetWorth(for: size, quality: quality)
-        }
+    init(drinks : [Drink] = []) {
+        self.drinks = .init(drinks)
     }
-}
-
-enum Quality {
-    case neutral, bad, veryBad
-}
-
-enum Size: Equatable {
-    case small
-    case medium
-    case large
-    case custom(size: Double)
+    
+    static var exampleDrinksState : DrinksState = .init(drinks: .init(Drink.exampleDrinks))
 }
 
 enum DrinksAction: Equatable {
@@ -61,7 +24,7 @@ enum DrinksAction: Equatable {
 }
 
 struct DrinksEnvironment {
-    let uuid: UUID
+    let uuid: () -> UUID
 }
 
 let drinksReducer = Reducer<
@@ -81,6 +44,8 @@ let drinksReducer = Reducer<
 )
 
 struct DrinksView: View {
+    let store : Store<DrinksState, DrinksAction>
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -88,6 +53,10 @@ struct DrinksView: View {
 
 struct DrinksView_Previews: PreviewProvider {
     static var previews: some View {
-        DrinksView()
+        DrinksView(
+            store: Store(
+                initialState: DrinksState(drinks: Drink.exampleDrinks),
+                reducer: drinksReducer,
+                environment: DrinksEnvironment(uuid: { UUID() } )))
     }
 }

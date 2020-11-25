@@ -11,6 +11,13 @@ import ComposableArchitecture
 struct SettingsState: Equatable {
     var theme: Theme
     var textSize: TextSize
+    
+    init(theme : Theme = .dark, textSize : TextSize = .medium) {
+        self.theme = theme
+        self.textSize = textSize
+    }
+    
+    static var exampleSettingsState : SettingsState = .init(theme: .dark, textSize: .medium)
 }
 
 enum Theme: Equatable {
@@ -46,6 +53,8 @@ let settingsReducer = Reducer<
 
 
 struct SettingsView: View {
+    let store : Store<SettingsState, SettingsAction>
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -53,6 +62,10 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(
+            store: Store(
+                initialState: .exampleSettingsState,
+                reducer: settingsReducer,
+                environment: SettingsEnvironment()))
     }
 }

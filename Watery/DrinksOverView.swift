@@ -54,9 +54,13 @@ struct DrinksOverView: View {
     }
 }
 
-//
-//struct DrinksOverView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DrinksOverView()
-//    }
-//}
+
+struct DrinksOverView_Previews: PreviewProvider {
+    static var previews: some View {
+        DrinksOverView(
+            store: Store(
+                initialState: DrinksState(drinks: Drink.exampleDrinks),
+                reducer: drinksOverViewReducer,
+                environment: DrinksEnvironment(uuid: { UUID() } )))
+    }
+}
