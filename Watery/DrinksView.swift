@@ -9,10 +9,10 @@ import SwiftUI
 import ComposableArchitecture
 
 struct DrinksState: Equatable {
-    var drinks: IdentifiedArrayOf<Drink>
+    var drinks: [Drink]
     
     init(drinks : [Drink] = []) {
-        self.drinks = .init(drinks)
+        self.drinks = drinks
     }
     
     static var exampleDrinksState : DrinksState = .init(drinks: .init(Drink.exampleDrinks))
