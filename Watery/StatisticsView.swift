@@ -9,13 +9,55 @@ import SwiftUI
 import ComposableArchitecture
 
 struct StatisticsView: View {
+    let store : Store<DrinksState, DrinksAction>
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithViewStore(self.store) { viewStore in
+            
+            VStack(alignment: .leading) {
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading) {
+                        
+                        Text("Today.")
+                            .foregroundColor(ColorManager.wateryBlue)
+                            .font(.system(size: 25))
+                            .fontWeight(.bold)
+                        
+                        Text(self.getPercentage(goal: 2.5, dailyConsumption: viewStore.dailyConsumption))
+                            .font(.system(size: 45))
+                            .fontWeight(.bold)
+                            .foregroundColor(ColorManager.wateryBlue)
+                        
+                        
+                    }
+                    Text("\(String(format: "%.1f", viewStore.dailyConsumption))l")
+                        .font(Font.title.weight(.regular))
+                        .foregroundColor(ColorManager.wateryBlue)
+                }
+                .padding()
+                
+                VStack(alignment: .leading) {
+                    Text("History.")
+                        .foregroundColor(ColorManager.wateryBlue)
+                        .font(.title2)
+                        .bold()
+                }.padding()
+                BarChartView()
+            }
+            
+        }
+    }
+    
+    func getPercentage(goal: Double = 2.5, dailyConsumption: Double = 0) -> String {
+        return "\(String(format: "%.0f", dailyConsumption / goal * 100))%"
     }
 }
 
 struct StatisticsView_Preview: PreviewProvider {
     static var previews: some View {
-        StatisticsView()
+        StatisticsView( store: Store(
+                            initialState: DrinksState(drinks: Drink.exampleDrinks),
+                            reducer: drinksReducer,
+                            environment: DrinksEnvironment(uuid: { UUID() } )))
     }
 }

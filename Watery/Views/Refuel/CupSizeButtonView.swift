@@ -6,32 +6,33 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct CupSizeButtonView: View {
     let name: String
-    let cupSize: Size
-    @Binding var selectedCupSize: Size
+    let cupSize: DrinkSizes
+    
+    let store : Store<DrinksState, DrinksAction>
+    
+    let generator = UINotificationFeedbackGenerator()
     
     var body: some View {
-        HStack {
-            Button(action: {
-                selectedCupSize = cupSize
-            }, label: {
-                ZStack {
-                    Circle()
-                        .stroke(ColorManager.wateryBlue, lineWidth: cupSize == selectedCupSize ? 4 : 2)
-                        .frame(width: 50, height: 50)
+        WithViewStore(self.store) { viewStore in
+            HStack {
+                Button(action: {
+                    self.generator.notificationOccurred(.warning)
+                    viewStore.send(.selectedDrinkChanged(viewStore.selectedDrinkId, self.cupSize))
+                }, label: {
+                    ZStack {
+                        Circle()
+                            .stroke(ColorManager.wateryBlue,  lineWidth: viewStore.selectedDrinkSize.rawValue == name ? 4 : 2)
+                            .frame(width: 36, height: 36)
                         
-                    
-                    Text(name)
-                }
-            }).buttonStyle(PlainButtonStyle())
+                        Text(name)
+                            .font(.system(size: 15))
+                    }
+                }).buttonStyle(PlainButtonStyle())
+            }
         }
     }
 }
-
-//struct CupSizeButtonView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CupSizeButtonView(name: "0.3", cupSize: .small, selectedCupSize: .small)
-//    }
-//}

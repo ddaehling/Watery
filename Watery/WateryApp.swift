@@ -10,9 +10,14 @@ import ComposableArchitecture
 
 @main
 struct WateryApp: App {
+    init() {
+        UITabBar.appearance().barTintColor = .white
+        UITabBar.appearance().clipsToBounds = true
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(store: Store(initialState: AppState(), reducer: appReducer, environment: AppEnvironment(uuid: { UUID() } )))
+            ContentView()
         }
     }
 }

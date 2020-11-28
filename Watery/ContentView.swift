@@ -25,44 +25,34 @@ struct AppEnvironment {
 }
 
 let appReducer = Reducer<
-AppState, AppAction, AppEnvironment
+    AppState, AppAction, AppEnvironment
 >.combine(
     drinksReducer
         .pullback(
-        state: \AppState.drinkState,
-        action: /AppAction.drinksAction,
-        environment: { environment in .init(uuid: environment.uuid) }),
+            state: \AppState.drinkState,
+            action: /AppAction.drinksAction,
+            environment: { environment in .init(uuid: environment.uuid) }),
     parametersReducer
         .pullback(
-        state: \AppState.parameterState,
-        action: /AppAction.parametersAction,
-        environment: { _ in .init() }),
+            state: \AppState.parameterState,
+            action: /AppAction.parametersAction,
+            environment: { _ in .init() }),
     settingsReducer
         .pullback(
-        state: \AppState.settingState,
-        action: /AppAction.settingsAction,
-        environment: { _ in .init() })
+            state: \AppState.settingState,
+            action: /AppAction.settingsAction,
+            environment: { _ in .init() })
 )
 
 
 struct ContentView: View {
-    var store : Store<AppState, AppAction>
-    
     var body: some View {
-        RefuelView()
-        
+        TabBarView()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(
-            store: Store(
-                initialState: AppState(
-                    drinkState: DrinksState.exampleDrinksState,
-                    settingState: SettingsState.exampleSettingsState,
-                    parameterState: ParametersState.exampleParameterState),
-                reducer: appReducer,
-                environment: AppEnvironment(uuid: { UUID() })))
+        ContentView()
     }
 }
