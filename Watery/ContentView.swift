@@ -22,6 +22,7 @@ enum AppAction: Equatable {
 
 struct AppEnvironment {
     var uuid: () -> UUID
+    var generator: UINotificationFeedbackGenerator
 }
 
 let appReducer = Reducer<
@@ -31,7 +32,7 @@ let appReducer = Reducer<
         .pullback(
             state: \AppState.drinkState,
             action: /AppAction.drinksAction,
-            environment: { environment in .init(uuid: environment.uuid) }),
+            environment: { environment in .init(uuid: environment.uuid, generator: environment.generator) }),
     parametersReducer
         .pullback(
             state: \AppState.parameterState,

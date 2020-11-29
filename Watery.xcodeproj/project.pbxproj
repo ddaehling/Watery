@@ -10,6 +10,7 @@
 		658CEF142569806900760050 /* DrinksOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658CEF132569806900760050 /* DrinksOverView.swift */; };
 		65A733002569ACDB001A6677 /* DrinkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A732FF2569ACDB001A6677 /* DrinkDetailView.swift */; };
 		65A73307256D63C6001A6677 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A73306256D63C6001A6677 /* Drink.swift */; };
+		65A7330F2573A21D001A6677 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7330E2573A21D001A6677 /* BarView.swift */; };
 		65BE9ED5255FDD5400E7E137 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE9ED4255FDD5400E7E137 /* StatisticsView.swift */; };
 		65BE9ED9255FDDB200E7E137 /* RefuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE9ED8255FDDB200E7E137 /* RefuelView.swift */; };
 		65BE9EDC255FE48900E7E137 /* ParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BE9EDB255FE48900E7E137 /* ParametersView.swift */; };
@@ -32,8 +33,9 @@
 		658CEF132569806900760050 /* DrinksOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksOverView.swift; sourceTree = "<group>"; };
 		65A732FF2569ACDB001A6677 /* DrinkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailView.swift; sourceTree = "<group>"; };
 		65A73306256D63C6001A6677 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
+		65A7330E2573A21D001A6677 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		65BE9ED4255FDD5400E7E137 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		65BE9ED8255FDDB200E7E137 /* RefuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelView.swift; sourceTree = "<group>"; };
+		65BE9ED8255FDDB200E7E137 /* RefuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefuelView.swift; path = ../../RefuelView.swift; sourceTree = "<group>"; };
 		65BE9EDB255FE48900E7E137 /* ParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersView.swift; sourceTree = "<group>"; };
 		65BE9EDE255FE49B00E7E137 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		65C0E936255F2CD3009283B3 /* Watery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watery.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +89,6 @@
 				65C0E939255F2CD3009283B3 /* WateryApp.swift */,
 				65C0E93B255F2CD3009283B3 /* ContentView.swift */,
 				65BE9ED4255FDD5400E7E137 /* StatisticsView.swift */,
-				65BE9ED8255FDDB200E7E137 /* RefuelView.swift */,
 				65A73306256D63C6001A6677 /* Drink.swift */,
 				658CEF132569806900760050 /* DrinksOverView.swift */,
 				65A732FF2569ACDB001A6677 /* DrinkDetailView.swift */,
@@ -112,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				7229578A25705FBE00A2CAE4 /* BarChartView.swift */,
+				65A7330E2573A21D001A6677 /* BarView.swift */,
 			);
 			path = BarChart;
 			sourceTree = "<group>";
@@ -163,8 +165,9 @@
 		72C50566256EA25900B3E556 /* Refuel */ = {
 			isa = PBXGroup;
 			children = (
-				72C50563256E9D5A00B3E556 /* CupSizeButtonView.swift */,
+				65BE9ED8255FDDB200E7E137 /* RefuelView.swift */,
 				72C5056C256EA56C00B3E556 /* CupSizeGroupView.swift */,
+				72C50563256E9D5A00B3E556 /* CupSizeButtonView.swift */,
 			);
 			path = Refuel;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65BE9EDF255FE49B00E7E137 /* SettingsView.swift in Sources */,
+				65A7330F2573A21D001A6677 /* BarView.swift in Sources */,
 				65A73307256D63C6001A6677 /* Drink.swift in Sources */,
 				726A405725700F60006555E6 /* TabBarView.swift in Sources */,
 				65BE9ED9255FDDB200E7E137 /* RefuelView.swift in Sources */,

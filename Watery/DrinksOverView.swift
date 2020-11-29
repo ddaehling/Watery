@@ -30,8 +30,6 @@ let drinksOverViewReducer = Reducer<
         }
     }
 )
-    
-
 
 struct DrinksOverView: View {
     let store : Store<DrinksState, DrinksOverViewAction>
@@ -61,6 +59,6 @@ struct DrinksOverView_Previews: PreviewProvider {
             store: Store(
                 initialState: DrinksState(drinks: Drink.exampleDrinks),
                 reducer: drinksOverViewReducer,
-                environment: DrinksEnvironment(uuid: { UUID() } )))
+                environment: DrinksEnvironment(uuid: UUID.init, generator: UINotificationFeedbackGenerator() )))
     }
 }

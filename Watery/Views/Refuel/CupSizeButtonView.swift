@@ -8,27 +8,27 @@
 import SwiftUI
 import ComposableArchitecture
 
+enum SelectedDrinkSizeAction: Equatable {
+    case selectedDrinkChanged(DrinkSize)
+}
+
 struct CupSizeButtonView: View {
-    let name: String
-    let cupSize: DrinkSizes
     
-    let store : Store<DrinksState, DrinksAction>
-    
-    let generator = UINotificationFeedbackGenerator()
+    let store : Store<DrinkSize, SelectedDrinkSizeAction>
+    private let generator = UINotificationFeedbackGenerator()
     
     var body: some View {
         WithViewStore(self.store) { viewStore in
             HStack {
                 Button(action: {
                     self.generator.notificationOccurred(.warning)
-                    viewStore.send(.selectedDrinkChanged(viewStore.selectedDrinkId, self.cupSize))
+                    viewStore.send(.selectedDrinkChanged(viewStore.state))
                 }, label: {
                     ZStack {
                         Circle()
-                            .stroke(ColorManager.wateryBlue,  lineWidth: viewStore.selectedDrinkSize.rawValue == name ? 4 : 2)
+                            .stroke(ColorManager.wateryBlue, lineWidth: 2)
                             .frame(width: 36, height: 36)
-                        
-                        Text(name)
+                        Text("\(viewStore.state.description)")
                             .font(.system(size: 15))
                     }
                 }).buttonStyle(PlainButtonStyle())

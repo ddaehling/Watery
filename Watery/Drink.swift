@@ -35,13 +35,11 @@ struct Drink: Equatable, Identifiable {
         self.netWorth = calculateNetWorth()
     }
     
-    
-    
-    static var exampleDrink : Drink = .init(date: Date(), id: UUID(), size: .medium(), type: .tea())
+    static var exampleDrink : Drink = .init(date: Date(), id: UUID(), size: .medium, type: .tea)
     static var exampleDrinks : [Drink] = [
-        .init(date: Date(), id: UUID(), size: .medium(), type: .tea()),
-        .init(date: Date(), id: UUID(), size: .large(), type: .lemonade()),
-        .init(date: Date(), id: UUID(), size: .small(), type: .juice())
+        .init(date: Date(), id: UUID(), size: .small, type: .tea),
+        .init(date: Date(), id: UUID(), size: .large, type: .lemonade),
+        .init(date: Date(), id: UUID(), size: .small, type: .juice)
     ]
 }
 
@@ -49,7 +47,7 @@ enum Quality {
     case neutral, bad, veryBad
 }
 
-enum DrinkImage: String {
+enum DrinkImage: String, CaseIterable {
     case tea = "Tea1"
     case spritzer = "Spritzer1"
     case lemonade = "Lemonade1"
@@ -58,33 +56,59 @@ enum DrinkImage: String {
     case lightdrinks = "Lightdrinks1"
 }
 
-enum DrinkType: Equatable {
-    case water(Quality = .neutral)
-    case tea(Quality = .neutral)
-    case spritzer(Quality = .veryBad)
-    case lemonade(Quality = .veryBad)
-    case coffee(Quality = .bad)
-    case juice(Quality = .veryBad)
-    case lightdrinks(Quality = .veryBad)
+enum DrinkType: String, Equatable, CaseIterable {
+    
+    case water
+    case tea
+    case spritzer
+    case lemonade
+    case coffee
+    case juice
+    case lightdrinks
     
     func getQuality() -> Quality {
         switch self {
-        case let .water(q), let .tea(q), let .spritzer(q), let .lemonade(q), let .coffee(q), let .juice(q), let .lightdrinks(q):
-            return q
+        case .water, .tea:
+            return .neutral
+        case .spritzer, .juice, .lemonade:
+            return .veryBad
+        case .coffee, .lightdrinks:
+            return .bad
         }
     }
 }
 
-enum DrinkSize: Equatable {
-    case small(Double = 0.3)
-    case medium(Double = 0.5)
-    case large(Double = 1)
+
+enum DrinkSize: Equatable, Hashable, CustomStringConvertible {
+    
+    var description: String {
+        switch self {
+        case .small:
+            return "0.3l"
+        case .medium:
+            return "0.5l"
+        case .large:
+            return "1.0l"
+        case let .custom(size):
+            return "\(size)l"
+        }
+    }
+    
+    case small
+    case medium
+    case large
     case custom(Double)
     
     func getSize() -> Double {
         switch self {
-        case let .small(s), let .medium(s), let .large(s), let .custom(s):
-            return s
+        case .small:
+            return 0.3
+        case .medium:
+            return 0.5
+        case .large:
+            return 1
+        case let .custom(size):
+            return size
         }
     }
 }

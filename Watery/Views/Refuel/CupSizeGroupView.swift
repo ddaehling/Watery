@@ -8,27 +8,29 @@
 import SwiftUI
 import ComposableArchitecture
 
+struct CupSelectionEnvironment {}
 
 struct CupSizeGroupView: View {
     
-    let store : Store<DrinksState, DrinksAction>
+    let store : Store<[DrinkSize], DrinksAction>
     
     var body: some View {
-        HStack {
-            
-            CupSizeButtonView(name: "0.3l", cupSize: DrinkSizes.small, store: self.store)
-            CupSizeButtonView(name: "0.5l",cupSize: DrinkSizes.medium, store: self.store)
-            CupSizeButtonView(name: "0.7l",cupSize: DrinkSizes.large, store: self.store)
-            CupSizeButtonView(name: "1l",cupSize: DrinkSizes.custom, store: self.store)
+        WithViewStore(self.store) { viewStore in
+            ForEachStore(self.store.scope(state: {
+                $0
+            }, action: DrinksAction.cupSelectionAction(id:action:)),
+            id: \.self,
+            content: CupSizeButtonView.init(store:)
+            )
         }
     }
 }
 
 struct CupSizeGroupView_Previews: PreviewProvider {
     static var previews: some View {
-        CupSizeGroupView( store: Store(
-                            initialState: DrinksState(drinks: Drink.exampleDrinks),
-                            reducer: drinksReducer,
-                            environment: DrinksEnvironment(uuid: { UUID() } )))
+        CupSizeGroupView(store: Store(
+                            initialState: [.small, .medium, .large, .custom(1.5)],
+                            reducer: .empty,
+                            environment: CupSelectionEnvironment() ))
     }
 }

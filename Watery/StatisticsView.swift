@@ -42,7 +42,7 @@ struct StatisticsView: View {
                         .font(.title2)
                         .bold()
                 }.padding()
-                BarChartView()
+                BarChartView(store: self.store.scope(state: { $0.barChartState }, action: DrinksAction.barChartAction))
             }
             
         }
@@ -58,6 +58,6 @@ struct StatisticsView_Preview: PreviewProvider {
         StatisticsView( store: Store(
                             initialState: DrinksState(drinks: Drink.exampleDrinks),
                             reducer: drinksReducer,
-                            environment: DrinksEnvironment(uuid: { UUID() } )))
+                            environment: DrinksEnvironment(uuid: UUID.init, generator: UINotificationFeedbackGenerator() )))
     }
 }

@@ -12,7 +12,7 @@ struct MainView: View {
     let store : Store<DrinksState, DrinksAction> = Store(
         initialState: DrinksState(drinks: Drink.exampleDrinks),
         reducer: drinksReducer,
-        environment: DrinksEnvironment(uuid: { UUID() } ))
+        environment: DrinksEnvironment(uuid: UUID.init, generator: UINotificationFeedbackGenerator() ))
     
     var body: some View {
         VStack {

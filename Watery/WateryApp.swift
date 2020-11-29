@@ -10,6 +10,9 @@ import ComposableArchitecture
 
 @main
 struct WateryApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     init() {
         UITabBar.appearance().barTintColor = .white
         UITabBar.appearance().clipsToBounds = true
@@ -19,5 +22,14 @@ struct WateryApp: App {
         WindowGroup {
             ContentView()
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(ColorManager.wateryBlue)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.darkGray], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.darkGray], for: .normal)
+        return true
     }
 }
