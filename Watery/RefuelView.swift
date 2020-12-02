@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 struct DrinksState: Equatable {
     var barChartState: BarChartState = BarChartState()
-    var drinks: [Drink] = []
+    var drinks: IdentifiedArrayOf<Drink> = []
     var dailyConsumption: Double = 0
     var selectedDrinkSize: DrinkSize = .small
     var sizeArray: [DrinkSize] = [.small, .medium, .large, .custom(1.5)]
@@ -189,7 +189,7 @@ struct DrinksView_Previews: PreviewProvider {
     static var previews: some View {
         RefuelView(
             store: Store(
-                initialState: DrinksState(drinks: Drink.exampleDrinks),
+                initialState: DrinksState(drinks: .init(Drink.exampleDrinks)),
                 reducer: drinksReducer,
                 environment: DrinksEnvironment(
                     uuid: UUID.init,

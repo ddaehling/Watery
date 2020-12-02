@@ -54,6 +54,6 @@ struct BarChartView_Previews: PreviewProvider {
                     ],
                     selectedTab: 0),
                 reducer: .empty,
-                environment: BarChartEnvironment))
+                environment: BarChartEnvironment()))
     }
 }

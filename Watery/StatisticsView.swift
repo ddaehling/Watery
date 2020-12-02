@@ -44,7 +44,6 @@ struct StatisticsView: View {
                 }.padding()
                 BarChartView(store: self.store.scope(state: { $0.barChartState }, action: DrinksAction.barChartAction))
             }
-            
         }
     }
     
@@ -56,7 +55,7 @@ struct StatisticsView: View {
 struct StatisticsView_Preview: PreviewProvider {
     static var previews: some View {
         StatisticsView( store: Store(
-                            initialState: DrinksState(drinks: Drink.exampleDrinks),
+                            initialState: DrinksState(drinks: .init(Drink.exampleDrinks)),
                             reducer: drinksReducer,
                             environment: DrinksEnvironment(uuid: UUID.init, generator: UINotificationFeedbackGenerator() )))
     }

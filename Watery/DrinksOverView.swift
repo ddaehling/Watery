@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 enum DrinksOverViewAction: Equatable {
-    case drinkDetailAction(id: Int, action: DrinksDetailAction)
+    case drinkDetailAction(id: UUID, action: DrinksDetailAction)
     case drinkDeleted(IndexSet)
 }
 
@@ -57,7 +57,7 @@ struct DrinksOverView_Previews: PreviewProvider {
     static var previews: some View {
         DrinksOverView(
             store: Store(
-                initialState: DrinksState(drinks: Drink.exampleDrinks),
+                initialState: DrinksState(drinks: .init(Drink.exampleDrinks)),
                 reducer: drinksOverViewReducer,
                 environment: DrinksEnvironment(uuid: UUID.init, generator: UINotificationFeedbackGenerator() )))
     }

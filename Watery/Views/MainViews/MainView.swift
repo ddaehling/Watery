@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 struct MainView: View {
     let store : Store<DrinksState, DrinksAction> = Store(
-        initialState: DrinksState(drinks: Drink.exampleDrinks),
+        initialState: DrinksState(drinks: .init(Drink.exampleDrinks)),
         reducer: drinksReducer,
         environment: DrinksEnvironment(uuid: UUID.init, generator: UINotificationFeedbackGenerator() ))
     
