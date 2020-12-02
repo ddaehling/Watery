@@ -2,7 +2,7 @@
 //  WateryApp.swift
 //  Watery
 //
-//  Created by Daniel Dähling on 13.11.20.
+//  Created by Daniel Dähling on 02.12.20.
 //
 
 import SwiftUI

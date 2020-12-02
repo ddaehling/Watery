@@ -2,7 +2,7 @@
 //  DrinksOverView.swift
 //  Watery
 //
-//  Created by Daniel Dähling on 21.11.20.
+//  Created by Daniel Dähling on 02.12.20.
 //
 
 import SwiftUI

@@ -2,7 +2,7 @@
 //  TabBarView.swift
 //  Watery
 //
-//  Created by Tom Stich on 26.11.20.
+//  Created by Daniel Dähling on 02.12.20.
 //
 
 import SwiftUI
